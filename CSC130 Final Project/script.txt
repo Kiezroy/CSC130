@@ -1,0 +1,5 @@
+string1*Bluey: 'Hello! My name is Bluey!'
+string2*Bluey: 'Follow me, we are going to fly far far away...'
+string3*Bluey: 'Have you seen my grapes? I seem to have misplaced them.'
+string4*Bluey: 'La la la la la'
+string5*Bluey: 'Did you know the great migration of my family occurs every five years?'
