@@ -81,6 +81,10 @@ public class Main{
 		collisionObjects.add(grapes);
 		collisionObjects.add(birdFriend);
 		
+		
+		
+		
+		
 		EZFileRead ezr = new EZFileRead("script.txt"); 		//File reader opens script text to read from
 				
 		//Iterates through file and stores keys and values into map
