@@ -81,6 +81,7 @@ public class Main{
 		collisionObjects.add(grapes);
 		collisionObjects.add(birdFriend);
 		
+		//Create the trees as bounding boxes
 		
 		
 		
