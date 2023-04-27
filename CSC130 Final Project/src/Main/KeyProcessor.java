@@ -2,6 +2,7 @@
 
 package Main;
 
+import Data.boundingBox;
 import logic.Control;
 import timer.stopWatchX;
 
@@ -32,29 +33,59 @@ public class KeyProcessor{
 			break;
 			
 		case 'w':
+			boolean stopW;
+			System.out.println("top: "+ Main.characterBox.gety1());
+			System.out.println("bot: "+ Main.characterBox.gety2());
+
+			//If a collision is true, make the character stop being able to move that direction
+			stopW = stop(Main.characterBox, Main.treeBoxNorth);
+			
+			
 			Main.nextSpriteIndexFront = 0; //Resets front side sprite so that if 's' is pressed, starts at frame 0
 
 			if(Main.nextSpriteIndexBack > 2) {
 				Main.nextSpriteIndexBack = 0;
 			}
 			
-			Main.spriteDisplayed.get(Main.currentSprite).setTag("back" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexBack)); 
-			Main.spriteDisplayed.get(Main.currentSprite).getCoords().adjustY(-35);
-			Main.nextSpriteIndexBack++;
+			if(stopW == false) {
+				//Move the character and change the sprite images
+				Main.spriteDisplayed.get(Main.currentSprite).setTag("back" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexBack)); 
+				Main.spriteDisplayed.get(Main.currentSprite).getCoords().adjustY(-35);
+				Main.nextSpriteIndexBack++;
+				
+				//Adjust the boundingBox
+				Main.characterBox.adjustY1(-35);
+				Main.characterBox.adjustY2(-35);
+			}
 			
 			break;
 			
 		case 's':
+			boolean stopS;
+			System.out.println("top: "+ Main.characterBox.gety1());
+			System.out.println("bot: "+ Main.characterBox.gety2());
+			
+			//If a collision is true, make the character stop being able to move that direction
+			stopS = stop(Main.characterBox, Main.treeBoxNorth);
+			
 			Main.nextSpriteIndexBack = 0; //Resets back side sprite so that if 'w' is pressed, starts at frame 0
 
 			if(Main.nextSpriteIndexFront > 2) {
 				Main.nextSpriteIndexFront = 0;
 			}
 			
-			Main.spriteDisplayed.get(Main.currentSprite).setTag("front" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexFront)); 
-			Main.spriteDisplayed.get(Main.currentSprite).getCoords().adjustY(35);
-			Main.nextSpriteIndexFront++;
+			if(stopS == false) {
+				Main.spriteDisplayed.get(Main.currentSprite).setTag("front" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexFront)); 
+				Main.spriteDisplayed.get(Main.currentSprite).getCoords().adjustY(35);
+				Main.nextSpriteIndexFront++;
+				
+				//Adjust the boundingBox
+				Main.characterBox.adjustY1(35);
+				Main.characterBox.adjustY2(35);
+			}
 			
+			//Find way to make it so that stopS is not finalized as true when it hits boundaries
+
 			break;
 		
 		case 'd':		
@@ -88,4 +119,26 @@ public class KeyProcessor{
 			break;
 		}
 	}
+	
+	//Method for if a collision is true, make the character stop being able to move that direction
+	public static boolean stop(boundingBox box1, boundingBox box2) {
+		if(noCollision(box1, box2)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public static boolean noCollision(boundingBox box1, boundingBox box2){
+		if (((box1.getx1() > box2.getx2()) 
+			|| (box1.getx2() < box2.getx1()) 
+			|| (box1.gety1() > box2.gety2()) 
+			|| (box1.gety2() < box2.gety1()))) {
+			
+			return false; //returns no collision
+			
+		}else{
+				return true; //returns yes a collision occurs
+			}
+		}
 }

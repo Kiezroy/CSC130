@@ -16,7 +16,38 @@ public class boundingBox {
     	this.y1 = y1;
     	this.y2 = y2;
     }
+
+	public int getx1() {
+		return this.x1;
+	}
+
+	public int getx2() {
+		return this.x2;
+	}
+
+	public int gety1() {
+		return this.y1;
+	}
+
+	public int gety2() {
+		return this.y2;
+	}
     
+	//Methods to allow for the adjustment of the boundingBox as it moves when keys are pressed
+    public void adjustX1(int xAdjust) {
+    	this.x1 += xAdjust;
+    }
     
+    public void adjustX2(int xAdjust) {
+    	this.x2 += xAdjust;
+    }
+    
+    public void adjustY1(int yAdjust) {
+    	this.y1 += yAdjust;
+    }
+    
+    public void adjustY2(int yAdjust) {
+    	this.y2 += yAdjust;
+    }
 
 }

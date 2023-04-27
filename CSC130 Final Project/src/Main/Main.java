@@ -8,6 +8,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 import Data.Vector2D;
+import Data.boundingBox;
 import Data.spriteInfo;
 import FileIO.EZFileRead;
 import logic.Control;
@@ -30,16 +31,21 @@ public class Main{
 
 	public static ArrayList<spriteInfo> collisionObjects = new ArrayList<>();
 	
+	//Object and background sprites
 	public static spriteInfo grass;
 	public static spriteInfo grapes;
 	public static spriteInfo birdFriend;
 
-	
+	//Tree sprites
 	public static spriteInfo treesHorizontalTop;
 	public static spriteInfo treesHorizontalBot;
 	public static spriteInfo treesVerticalLeft;
 	public static spriteInfo treesVerticalRight;
 
+	//Bounding boxes
+	public static boundingBox characterBox;
+	public static boundingBox treeBoxNorth;
+	
 	
 	public static HashMap<String, String> map = new HashMap<>(); //Map to store key and values of script.txt
 	public static int textIndex = 1; //Index to store line of script.txt
@@ -81,8 +87,15 @@ public class Main{
 		collisionObjects.add(grapes);
 		collisionObjects.add(birdFriend);
 		
-		//Create the trees as bounding boxes
 		
+		//Make the character a bounding box
+		characterBox = new boundingBox(spriteDisplayed.get(0), 295,420,400,520);
+		
+		//Create the trees as bounding boxes													   
+		treeBoxNorth = new boundingBox(treesHorizontalTop, 50,1250,60,200); //x1 = left of sprite, x2 = right of sprite, y1 = top, etc...
+		
+		
+		//If a collision is true, make the character stop being able to move that direction
 		
 		
 		
@@ -106,12 +119,12 @@ public class Main{
 		
 		 ctrl.addSpriteToFrontBuffer(0,0,grass.getTag()); //Adds the grass background to the screen
 		 
-		 ctrl.addSpriteToFrontBuffer(0, 0, collisionObjects.get(0).getTag());
-		 ctrl.addSpriteToFrontBuffer(0, 500, collisionObjects.get(1).getTag());
-		 ctrl.addSpriteToFrontBuffer(1100, 185, collisionObjects.get(2).getTag());
-		 ctrl.addSpriteToFrontBuffer(0, 175, collisionObjects.get(3).getTag());
-		 ctrl.addSpriteToFrontBuffer(200, 200, collisionObjects.get(4).getTag());
-		 ctrl.addSpriteToFrontBuffer(800, 400, collisionObjects.get(5).getTag());
+		 ctrl.addSpriteToFrontBuffer(0, 0, collisionObjects.get(0).getTag());	    //Top
+		 ctrl.addSpriteToFrontBuffer(0, 500, collisionObjects.get(1).getTag());     //Bot
+		 ctrl.addSpriteToFrontBuffer(1100, 185, collisionObjects.get(2).getTag());  //Right
+		 ctrl.addSpriteToFrontBuffer(0, 175, collisionObjects.get(3).getTag());     //Left
+		 ctrl.addSpriteToFrontBuffer(200, 200, collisionObjects.get(4).getTag());   //Grapes
+		 ctrl.addSpriteToFrontBuffer(800, 400, collisionObjects.get(5).getTag());   //BirdFriend
 
 		//Adding sprite to the screen with its corresponding parameters
 
@@ -134,5 +147,22 @@ public class Main{
 	}
 	
 	// Additional Static methods below...(if needed)
+	
+	
+	//Detects if there is a collision
+	/*
+	public static boolean collision(boundingBox box1, boundingBox box2){
+		if (((box1.getx1() > box2.getx2()) 
+			|| (box1.getx2() < box2.getx1()) 
+			|| (box1.gety1() > box2.gety2()) 
+			|| (box1.gety2() < box2.gety1()))) {
+			
+			return false;
+			
+		}else{
+				return true;
+			}
+		}
+		*/
 
 }
