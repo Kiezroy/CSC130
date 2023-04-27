@@ -21,6 +21,7 @@ public class KeyProcessor{
 		sw.resetWatch();
 		
 		/* TODO: You can modify values below here! */
+		
 		switch(key){
 		
 		case '%':								// ESC key
@@ -34,12 +35,16 @@ public class KeyProcessor{
 			
 		case 'w':
 			boolean stopW;
-			System.out.println("top: "+ Main.characterBox.gety1());
-			System.out.println("bot: "+ Main.characterBox.gety2());
+			//System.out.println("top: "+ Main.characterBox.gety1());
+			//System.out.println("bot: "+ Main.characterBox.gety2());
 
 			//If a collision is true, make the character stop being able to move that direction
 			stopW = stop(Main.characterBox, Main.treeBoxNorth);
 			
+			//Allows player to move back up if hit boundary
+			if(Main.characterBox.gety2() > Main.treeBoxSouth.gety1()) {
+				stopW = false;
+			}
 			
 			Main.nextSpriteIndexFront = 0; //Resets front side sprite so that if 's' is pressed, starts at frame 0
 
@@ -62,11 +67,18 @@ public class KeyProcessor{
 			
 		case 's':
 			boolean stopS;
-			System.out.println("top: "+ Main.characterBox.gety1());
-			System.out.println("bot: "+ Main.characterBox.gety2());
+			//System.out.println("top: "+ Main.characterBox.gety1());
+			//System.out.println("bot: "+ Main.characterBox.gety2());
 			
 			//If a collision is true, make the character stop being able to move that direction
-			stopS = stop(Main.characterBox, Main.treeBoxNorth);
+			stopS = stop(Main.characterBox, Main.treeBoxSouth);
+			
+			//System.out.println("Tree North: "+ Main.treeBoxNorth.gety2());
+			
+			//Allows player to move back down if hit boundary
+			if(Main.characterBox.gety1() < Main.treeBoxNorth.gety2()) {
+				stopS = false;
+			}
 			
 			Main.nextSpriteIndexBack = 0; //Resets back side sprite so that if 'w' is pressed, starts at frame 0
 
@@ -83,8 +95,6 @@ public class KeyProcessor{
 				Main.characterBox.adjustY1(35);
 				Main.characterBox.adjustY2(35);
 			}
-			
-			//Find way to make it so that stopS is not finalized as true when it hits boundaries
 
 			break;
 		
