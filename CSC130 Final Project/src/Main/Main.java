@@ -46,6 +46,8 @@ public class Main{
 	public static boundingBox characterBox;
 	public static boundingBox treeBoxNorth;
 	public static boundingBox treeBoxSouth;
+	public static boundingBox treeBoxEast;
+	public static boundingBox treeBoxWest;
 	
 	
 	public static HashMap<String, String> map = new HashMap<>(); //Map to store key and values of script.txt
@@ -90,13 +92,14 @@ public class Main{
 		
 		
 		//Make the character a bounding box
-		characterBox = new boundingBox(spriteDisplayed.get(0), 295,420,400,520);
+		characterBox = new boundingBox(spriteDisplayed.get(0), 295,420,400,520); //Initial character position
 		
 		//Create the trees as bounding boxes													   
 		treeBoxNorth = new boundingBox(treesHorizontalTop, 50,1250,60,200); //x1 = left of sprite, x2 = right of sprite, y1 = top, etc...
 		treeBoxSouth = new boundingBox(treesHorizontalBot, 50,1250,550,700);
+		treeBoxWest = new boundingBox(treesVerticalLeft, 20,185,190,530);
+		treeBoxEast = new boundingBox(treesVerticalRight, 1115,1275,190,530);
 		
-		//If a collision is true, make the character stop being able to move that direction
 		
 		
 		
@@ -148,22 +151,5 @@ public class Main{
 	}
 	
 	// Additional Static methods below...(if needed)
-	
-	
-	//Detects if there is a collision
-	/*
-	public static boolean collision(boundingBox box1, boundingBox box2){
-		if (((box1.getx1() > box2.getx2()) 
-			|| (box1.getx2() < box2.getx1()) 
-			|| (box1.gety1() > box2.gety2()) 
-			|| (box1.gety2() < box2.gety1()))) {
-			
-			return false;
-			
-		}else{
-				return true;
-			}
-		}
-		*/
 
 }
