@@ -1,10 +1,10 @@
 # CSC130
 
-Data Structures and Algorithm Analysis
+                                                              Data Structures and Algorithm Analysis
 
-Final Project
+                                                                        Final Project
 
-250 Points
+                                                                         250 Points
 
 **Complete a single screen game “level” using Data Structures / Algorithms**
 
