@@ -6,7 +6,7 @@ Final Project
 
 250 Points
 
-Complete a single screen game “level” using Data Structures / Algorithms
+**Complete a single screen game “level” using Data Structures / Algorithms**
 
 The purpose of this project is to test that you can apply the knowledge learned in this course while actually coding something interesting in Java. You will be using the Gaming API I gave you (which you used to complete the Checkpoint assignments). Follow the steps / specifications below for credit.
 
@@ -18,11 +18,11 @@ Download and install the Gaming API to the project using the instructional video
 
 Read the assignment specifications below and do everything mentioned if you wish to receive full credit. I will deduct points for parts that are not implemented (or not done correctly.) Your program must run without errors or warnings for full credit.
 
-Specifications
+**Specifications**
 
 This project has two “layers” of requirements: one is algorithms and the other is data structures. Each has point value in your final grade on this project.
 
-Algorithms
+**Algorithms**
 
 Your project must DO the following (behavior, algorithms):
 
@@ -43,7 +43,7 @@ Your program must display a description of the item examined when a user inspect
 
 Your program must be free of errors, crashes, or warnings for credit
 
-Data Structures
+**Data Structures**
 
 Your project must fulfill the minimum Data Structure requirements:
 
@@ -53,7 +53,7 @@ Create a custom data type for the bounding box collision object (single bounding
 
 Have a container that holds a collection of bounding boxes neatly
 
-Submission
+**Submission**
 
 Zip up a copy of your entire project from and submit via Canvas by the due date. Only .zip files will be accepted!
 
