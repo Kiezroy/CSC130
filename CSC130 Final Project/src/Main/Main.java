@@ -127,7 +127,7 @@ public class Main{
 		 ctrl.addSpriteToFrontBuffer(0, 500, collisionObjects.get(1).getTag());     //Bot
 		 ctrl.addSpriteToFrontBuffer(1100, 185, collisionObjects.get(2).getTag());  //Right
 		 ctrl.addSpriteToFrontBuffer(0, 175, collisionObjects.get(3).getTag());     //Left
-		 ctrl.addSpriteToFrontBuffer(200, 200, collisionObjects.get(4).getTag());   //Grapes
+		 ctrl.addSpriteToFrontBuffer(-300, -40, collisionObjects.get(4).getTag());   //Grapes
 		 ctrl.addSpriteToFrontBuffer(800, 400, collisionObjects.get(5).getTag());   //BirdFriend
 
 		//Adding sprite to the screen with its corresponding parameters
