@@ -21,7 +21,8 @@ public class Main{
 	public static stopWatchX timer = new stopWatchX(100);
 	public static stopWatchX textTimer = new stopWatchX(3500); //Timer for length of displaying Bluey's text
 	
-	public static ArrayList<spriteInfo> spriteDisplayed = new ArrayList<>(); //Placeholder sprite displayed on screen for left,right sprites
+	public static ArrayList<spriteInfo> spriteDisplayed = new ArrayList<>(); //Character sprite displayed on screen for left,right sprites
+																		     //Fulfills Image Data Java Collection Requirement
 	public static int currentSprite = 0;
 	
 	public static int nextSpriteIndexRight = 0;
@@ -29,7 +30,8 @@ public class Main{
 	public static int nextSpriteIndexBack = 0;
 	public static int nextSpriteIndexFront = 0;
 
-	public static ArrayList<spriteInfo> collisionObjects = new ArrayList<>();
+	//public static ArrayList<spriteInfo> collisionObjects = new ArrayList<>();	//Fulfills collection of collision objects
+	public static ArrayList<boundingBox> collisionObjects = new ArrayList<>();
 	
 	//Object and background sprites
 	public static spriteInfo grass;
@@ -68,41 +70,38 @@ public class Main{
 		// TODO: Code your starting conditions here...NOT DRAW CALLS HERE! (no addSprite or drawString)
 		
 		
-		grass = new spriteInfo(new Vector2D(0,0), "grass"); //Creates the grass background
-		
+		grass = new spriteInfo(new Vector2D(0,0), "grass"); //Creates the grass background with coordinates	
 		grapes = new spriteInfo(new Vector2D(500,350), "grapes"); //Creates the grapes
-		birdFriend = new spriteInfo(new Vector2D(0,0), "birdFriend"); //Creates the other bird
+		birdFriend = new spriteInfo(new Vector2D(1000, 425), "birdFriend"); //Creates the other bird
 		
 		treesHorizontalTop = new spriteInfo(new Vector2D(0,0), "treesHorizontalT");
-		treesHorizontalBot = new spriteInfo(new Vector2D(0,0), "treesHorizontalB");
-		treesVerticalLeft = new spriteInfo(new Vector2D(0,0), "treesVerticalL");
-		treesVerticalRight = new spriteInfo(new Vector2D(0,0), "treesVerticalR");
-
-
+		treesHorizontalBot = new spriteInfo(new Vector2D(0,500), "treesHorizontalB");
+		treesVerticalRight = new spriteInfo(new Vector2D(1100, 185), "treesVerticalR");
+		treesVerticalLeft = new spriteInfo(new Vector2D(0, 175), "treesVerticalL");
 		
-		//Add sprites to arraylist
+		//Add character sprites to arraylist
 		spriteDisplayed.add(new spriteInfo(new Vector2D(currentVec.getX(), currentVec.getY()), "birdwalkR" + Integer.toString(currentSprite)));
 		
-		collisionObjects.add(treesHorizontalTop);
-		collisionObjects.add(treesHorizontalBot);
-		collisionObjects.add(treesVerticalRight);
-		collisionObjects.add(treesVerticalLeft);
-
-		collisionObjects.add(grapes);
-		collisionObjects.add(birdFriend);
 		
-		
-		//Make the character a bounding box
+		//Make the character a bounding box with box coordinates
 		characterBox = new boundingBox(spriteDisplayed.get(0), 295,400,420,515); //Initial character position
 		
 		//Create the trees as bounding boxes													   
 		treeBoxNorth = new boundingBox(treesHorizontalTop, 50,1250,60,200); //x1 = left of sprite, x2 = right of sprite, y1 = top, etc...
 		treeBoxSouth = new boundingBox(treesHorizontalBot, 50,1250,550,700);
-		treeBoxWest = new boundingBox(treesVerticalLeft, 20,185,190,530);
 		treeBoxEast = new boundingBox(treesVerticalRight, 1115,1275,190,530);
+		treeBoxWest = new boundingBox(treesVerticalLeft, 20,185,190,530);
 		
 		grapesBox = new boundingBox(grapes, 500,560,350,400);
 		birdFriendBox = new boundingBox(birdFriend, 1000, 1100,465,550);
+		
+		collisionObjects.add(treeBoxNorth);
+		collisionObjects.add(treeBoxSouth);
+		collisionObjects.add(treeBoxEast);
+		collisionObjects.add(treeBoxWest);
+		collisionObjects.add(grapesBox);
+		collisionObjects.add(birdFriendBox);
+		
 		
 		
 		EZFileRead ezr = new EZFileRead("script.txt"); 		//File reader opens script text to read from
@@ -122,24 +121,17 @@ public class Main{
 	public static void update(Control ctrl) {
 		// TODO: This is where you can code! (Starting code below is just to show you how it works)
 		
-	
-		
-		//Clean this up with a for loop (maybe add the objects into a container?)
 		 ctrl.addSpriteToFrontBuffer(0,0,grass.getTag()); //Adds the grass background to the screen
-		 
-		 ctrl.addSpriteToFrontBuffer(0, 0, collisionObjects.get(0).getTag());	    //Top
-		 ctrl.addSpriteToFrontBuffer(0, 500, collisionObjects.get(1).getTag());     //Bot
-		 ctrl.addSpriteToFrontBuffer(1100, 185, collisionObjects.get(2).getTag());  //Right
-		 ctrl.addSpriteToFrontBuffer(0, 175, collisionObjects.get(3).getTag());     //Left
-		 //ctrl.addSpriteToFrontBuffer(-300, -40, collisionObjects.get(4).getTag());   //Grapes
-		 //ctrl.addSpriteToFrontBuffer(520, 300, collisionObjects.get(4).getTag());   //Grapes
-		 ctrl.addSpriteToFrontBuffer(grapes.getCoords().getX(), grapes.getCoords().getY(), collisionObjects.get(4).getTag());   //Grapes
-		 ctrl.addSpriteToFrontBuffer(1000, 425, collisionObjects.get(5).getTag());   //BirdFriend
 
-		 System.out.println(grapes.getCoords().getX() + " " + grapes.getCoords().getY());
+		 //Loops through objects that can be collided with and adds them to the screen
+		 for(int i = 0; i < collisionObjects.size(); i++) {
+			 ctrl.addSpriteToFrontBuffer(collisionObjects.get(i).getSpriteData().getCoords().getX(), 
+					 				     collisionObjects.get(i).getSpriteData().getCoords().getY(), 
+					 				     collisionObjects.get(i).getSpriteData().getTag());
+		 }
 		 
-		//Adding sprite to the screen with its corresponding parameters
-
+		 
+		//Adding character sprite to the screen with its corresponding parameters
 		String tag = spriteDisplayed.get(currentSprite).getTag();
 		int xCoord = spriteDisplayed.get(currentSprite).getCoords().getX();
 		int yCoord = spriteDisplayed.get(currentSprite).getCoords().getY();

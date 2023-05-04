@@ -1,3 +1,5 @@
+//Custom data type for collision buffer object
+
 package Data;
 
 public class boundingBox {
