@@ -100,12 +100,7 @@ public class KeyProcessor{
 			
 			boolean stopD;
 			stopD = stop(Main.characterBox, Main.treeBoxEast);
-			
-			//Allows player to move back West if hit boundary
-			System.out.println(stopD);
-			System.out.println(Main.characterBox.getx2());
-			System.out.println(Main.treeBoxWest.getx1());
-			
+
 			//Allows player to move back East if hit boundary
 			if(Main.characterBox.getx2() < Main.treeBoxWest.getx1()) {
 				stopD = false;
