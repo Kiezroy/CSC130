@@ -50,4 +50,8 @@ public class boundingBox {
     	this.y2 += yAdjust;
     }
 
+	public spriteInfo getSpriteData() {
+		return spriteData;
+	}
+
 }

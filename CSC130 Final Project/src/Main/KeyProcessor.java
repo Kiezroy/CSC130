@@ -99,8 +99,9 @@ public class KeyProcessor{
 						//something to do with adjustX before nextspriteindexright is incremented
 			
 			boolean stopD;
-			stopD = collision(Main.characterBox, Main.treeBoxEast) || collision(Main.characterBox, Main.grapesBox);
-
+			stopD = collision(Main.characterBox, Main.treeBoxEast);
+			
+			
 			//Allows player to move back East if hit boundary
 			if(Main.characterBox.getx2() < Main.treeBoxWest.getx1()) {
 				stopD = false;
@@ -158,6 +159,7 @@ public class KeyProcessor{
 		}
 	}
 	
+	
 	//Method for if a collision is true, make the character stop being able to move that direction
 	public static boolean collision(boundingBox box1, boundingBox box2){
 		if (((box1.getx1() > box2.getx2()) 
@@ -171,4 +173,7 @@ public class KeyProcessor{
 				return true; //returns yes a collision occurs
 			}
 		}
+		
+	
 }
+

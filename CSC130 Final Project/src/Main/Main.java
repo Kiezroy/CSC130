@@ -49,6 +49,7 @@ public class Main{
 	public static boundingBox treeBoxEast;
 	public static boundingBox treeBoxWest;
 	public static boundingBox grapesBox;
+	public static boundingBox birdFriendBox;
 	
 	public static HashMap<String, String> map = new HashMap<>(); //Map to store key and values of script.txt
 	public static int textIndex = 1; //Index to store line of script.txt
@@ -69,7 +70,7 @@ public class Main{
 		
 		grass = new spriteInfo(new Vector2D(0,0), "grass"); //Creates the grass background
 		
-		grapes = new spriteInfo(new Vector2D(0,0), "grapes"); //Creates the grapes
+		grapes = new spriteInfo(new Vector2D(500,350), "grapes"); //Creates the grapes
 		birdFriend = new spriteInfo(new Vector2D(0,0), "birdFriend"); //Creates the other bird
 		
 		treesHorizontalTop = new spriteInfo(new Vector2D(0,0), "treesHorizontalT");
@@ -100,7 +101,8 @@ public class Main{
 		treeBoxWest = new boundingBox(treesVerticalLeft, 20,185,190,530);
 		treeBoxEast = new boundingBox(treesVerticalRight, 1115,1275,190,530);
 		
-		grapesBox = new boundingBox(grapes, 520, 0,0,0);
+		grapesBox = new boundingBox(grapes, 500,570,350,410);
+		birdFriendBox = new boundingBox(birdFriend, 1000, 1100,430,550);
 		
 		
 		EZFileRead ezr = new EZFileRead("script.txt"); 		//File reader opens script text to read from
@@ -120,16 +122,22 @@ public class Main{
 	public static void update(Control ctrl) {
 		// TODO: This is where you can code! (Starting code below is just to show you how it works)
 		
+	
 		
+		//Clean this up with a for loop (maybe add the objects into a container?)
 		 ctrl.addSpriteToFrontBuffer(0,0,grass.getTag()); //Adds the grass background to the screen
 		 
 		 ctrl.addSpriteToFrontBuffer(0, 0, collisionObjects.get(0).getTag());	    //Top
 		 ctrl.addSpriteToFrontBuffer(0, 500, collisionObjects.get(1).getTag());     //Bot
 		 ctrl.addSpriteToFrontBuffer(1100, 185, collisionObjects.get(2).getTag());  //Right
 		 ctrl.addSpriteToFrontBuffer(0, 175, collisionObjects.get(3).getTag());     //Left
-		 ctrl.addSpriteToFrontBuffer(-300, -40, collisionObjects.get(4).getTag());   //Grapes
-		 ctrl.addSpriteToFrontBuffer(800, 400, collisionObjects.get(5).getTag());   //BirdFriend
+		 //ctrl.addSpriteToFrontBuffer(-300, -40, collisionObjects.get(4).getTag());   //Grapes
+		 //ctrl.addSpriteToFrontBuffer(520, 300, collisionObjects.get(4).getTag());   //Grapes
+		 ctrl.addSpriteToFrontBuffer(grapes.getCoords().getX(), grapes.getCoords().getY(), collisionObjects.get(4).getTag());   //Grapes
+		 ctrl.addSpriteToFrontBuffer(1000, 425, collisionObjects.get(5).getTag());   //BirdFriend
 
+		 System.out.println(grapes.getCoords().getX() + " " + grapes.getCoords().getY());
+		 
 		//Adding sprite to the screen with its corresponding parameters
 
 		String tag = spriteDisplayed.get(currentSprite).getTag();
