@@ -37,7 +37,7 @@ public class KeyProcessor{
 			boolean stopW;
 
 			//If a collision is true, make the character stop being able to move that direction
-			stopW = stop(Main.characterBox, Main.treeBoxNorth);
+			stopW = collision(Main.characterBox, Main.treeBoxNorth);
 			
 			//Allows player to move back up if hit boundary
 			if(Main.characterBox.gety2() > Main.treeBoxSouth.gety1()) {
@@ -67,7 +67,7 @@ public class KeyProcessor{
 			boolean stopS;
 			
 			//If a collision is true, make the character stop being able to move that direction
-			stopS = stop(Main.characterBox, Main.treeBoxSouth);
+			stopS = collision(Main.characterBox, Main.treeBoxSouth);
 			
 			//System.out.println("Tree North: "+ Main.treeBoxNorth.gety2());
 			
@@ -99,7 +99,7 @@ public class KeyProcessor{
 						//something to do with adjustX before nextspriteindexright is incremented
 			
 			boolean stopD;
-			stopD = stop(Main.characterBox, Main.treeBoxEast);
+			stopD = collision(Main.characterBox, Main.treeBoxEast) || collision(Main.characterBox, Main.grapesBox);
 
 			//Allows player to move back East if hit boundary
 			if(Main.characterBox.getx2() < Main.treeBoxWest.getx1()) {
@@ -129,7 +129,7 @@ public class KeyProcessor{
 			
 		case 'a':
 			boolean stopA;
-			stopA = stop(Main.characterBox, Main.treeBoxWest);
+			stopA = collision(Main.characterBox, Main.treeBoxWest);
 			
 			//Allows player to move back West if hit boundary
 			if(Main.characterBox.getx1() > Main.treeBoxEast.getx2()) {
@@ -159,15 +159,7 @@ public class KeyProcessor{
 	}
 	
 	//Method for if a collision is true, make the character stop being able to move that direction
-	public static boolean stop(boundingBox box1, boundingBox box2) {
-		if(noCollision(box1, box2)) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	public static boolean noCollision(boundingBox box1, boundingBox box2){
+	public static boolean collision(boundingBox box1, boundingBox box2){
 		if (((box1.getx1() > box2.getx2()) 
 			|| (box1.getx2() < box2.getx1()) 
 			|| (box1.gety1() > box2.gety2()) 

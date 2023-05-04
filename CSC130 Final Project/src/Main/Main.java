@@ -48,7 +48,7 @@ public class Main{
 	public static boundingBox treeBoxSouth;
 	public static boundingBox treeBoxEast;
 	public static boundingBox treeBoxWest;
-	
+	public static boundingBox grapesBox;
 	
 	public static HashMap<String, String> map = new HashMap<>(); //Map to store key and values of script.txt
 	public static int textIndex = 1; //Index to store line of script.txt
@@ -100,7 +100,7 @@ public class Main{
 		treeBoxWest = new boundingBox(treesVerticalLeft, 20,185,190,530);
 		treeBoxEast = new boundingBox(treesVerticalRight, 1115,1275,190,530);
 		
-		
+		grapesBox = new boundingBox(grapes, 520, 0,0,0);
 		
 		
 		EZFileRead ezr = new EZFileRead("script.txt"); 		//File reader opens script text to read from
