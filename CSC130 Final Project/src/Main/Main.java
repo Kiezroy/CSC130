@@ -93,7 +93,7 @@ public class Main{
 		
 		
 		//Make the character a bounding box
-		characterBox = new boundingBox(spriteDisplayed.get(0), 295,420,400,520); //Initial character position
+		characterBox = new boundingBox(spriteDisplayed.get(0), 295,400,420,515); //Initial character position
 		
 		//Create the trees as bounding boxes													   
 		treeBoxNorth = new boundingBox(treesHorizontalTop, 50,1250,60,200); //x1 = left of sprite, x2 = right of sprite, y1 = top, etc...
@@ -101,8 +101,8 @@ public class Main{
 		treeBoxWest = new boundingBox(treesVerticalLeft, 20,185,190,530);
 		treeBoxEast = new boundingBox(treesVerticalRight, 1115,1275,190,530);
 		
-		grapesBox = new boundingBox(grapes, 500,570,350,410);
-		birdFriendBox = new boundingBox(birdFriend, 1000, 1100,430,550);
+		grapesBox = new boundingBox(grapes, 500,560,350,400);
+		birdFriendBox = new boundingBox(birdFriend, 1000, 1100,465,550);
 		
 		
 		EZFileRead ezr = new EZFileRead("script.txt"); 		//File reader opens script text to read from

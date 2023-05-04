@@ -52,14 +52,14 @@ public class KeyProcessor{
 			
 			if(stopW == false) {
 				//Move the character and change the sprite images
-				Main.spriteDisplayed.get(Main.currentSprite).setTag("back" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexBack)); 
 				Main.spriteDisplayed.get(Main.currentSprite).getCoords().adjustY(-35);
-				Main.nextSpriteIndexBack++;
 				
 				//Adjust the boundingBox
 				Main.characterBox.adjustY1(-35);
 				Main.characterBox.adjustY2(-35);
 			}
+			Main.spriteDisplayed.get(Main.currentSprite).setTag("back" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexBack)); 
+			Main.nextSpriteIndexBack++;
 			
 			break;
 			
@@ -67,7 +67,7 @@ public class KeyProcessor{
 			boolean stopS;
 			
 			//If a collision is true, make the character stop being able to move that direction
-			stopS = collision(Main.characterBox, Main.treeBoxSouth);
+			stopS = collision(Main.characterBox, Main.treeBoxSouth) || collision(Main.characterBox, Main.birdFriendBox);
 			
 			//System.out.println("Tree North: "+ Main.treeBoxNorth.gety2());
 			
@@ -83,14 +83,14 @@ public class KeyProcessor{
 			}
 			
 			if(stopS == false) {
-				Main.spriteDisplayed.get(Main.currentSprite).setTag("front" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexFront)); 
 				Main.spriteDisplayed.get(Main.currentSprite).getCoords().adjustY(35);
-				Main.nextSpriteIndexFront++;
 				
 				//Adjust the boundingBox
 				Main.characterBox.adjustY1(35);
 				Main.characterBox.adjustY2(35);
 			}
+			Main.spriteDisplayed.get(Main.currentSprite).setTag("front" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexFront)); 
+			Main.nextSpriteIndexFront++;
 
 			break;
 		
@@ -99,7 +99,7 @@ public class KeyProcessor{
 						//something to do with adjustX before nextspriteindexright is incremented
 			
 			boolean stopD;
-			stopD = collision(Main.characterBox, Main.treeBoxEast);
+			stopD = collision(Main.characterBox, Main.treeBoxEast) || collision(Main.characterBox, Main.birdFriendBox);
 			
 			
 			//Allows player to move back East if hit boundary
@@ -116,15 +116,18 @@ public class KeyProcessor{
 			}
 			
 			if(stopD == false) {
-				Main.spriteDisplayed.get(Main.currentSprite) //When 'd' is pressed, tag of sprite changes to face right side
-									.setTag("birdwalkR" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexRight));
 				Main.spriteDisplayed.get(Main.currentSprite).getCoords().adjustX(35); //Adjust x coords by 35 pixels
-				Main.nextSpriteIndexRight++; //Next sprite incremented to be displayed
 				
 				//Adjust the boundingBox
 				Main.characterBox.adjustX1(35);
 				Main.characterBox.adjustX2(35);
 			}
+			
+			//Place outside of if statement so character keeps walking but coordinates not adjusted
+			Main.spriteDisplayed.get(Main.currentSprite) //When 'd' is pressed, tag of sprite changes to face right side
+			.setTag("birdwalkR" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexRight));
+			Main.nextSpriteIndexRight++; //Next sprite incremented to be displayed
+
 			
 			break;
 			
@@ -145,15 +148,15 @@ public class KeyProcessor{
 			
 			
 			if(stopA == false) {
-				Main.spriteDisplayed.get(Main.currentSprite).setTag("birdwalkL" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexLeft)); 
 				Main.spriteDisplayed.get(Main.currentSprite).getCoords().adjustX(-35);
-				Main.nextSpriteIndexLeft++;
 				
 				//Adjust the boundingBox
 				Main.characterBox.adjustX1(-35);
 				Main.characterBox.adjustX2(-35);
 			}
 				
+			Main.spriteDisplayed.get(Main.currentSprite).setTag("birdwalkL" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexLeft)); 
+			Main.nextSpriteIndexLeft++;
 			
 			break;
 		}
