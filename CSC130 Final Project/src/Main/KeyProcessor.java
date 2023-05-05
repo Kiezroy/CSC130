@@ -37,7 +37,13 @@ public class KeyProcessor{
 			boolean stopW;
 
 			//If a collision is true, make the character stop being able to move that direction
-			stopW = collision(Main.characterBox, Main.treeBoxNorth);
+			//stopW = collision(Main.characterBox, Main.treeBoxNorth);
+			stopW = collision(Main.characterBox, Main.treeBoxNorth) || collision(Main.characterBox, Main.grapesBox);
+			
+			//Allows player to move back North if hits grapes
+			if(collision(Main.characterBox, Main.grapesBox) && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() < 330) {
+				stopW = false;
+			}
 			
 			//Allows player to move back up if hit boundary
 			if(Main.characterBox.gety2() > Main.treeBoxSouth.gety1()) {
@@ -67,9 +73,15 @@ public class KeyProcessor{
 			boolean stopS;
 			
 			//If a collision is true, make the character stop being able to move that direction
-			stopS = collision(Main.characterBox, Main.treeBoxSouth) || collision(Main.characterBox, Main.birdFriendBox);
+			stopS = collision(Main.characterBox, Main.treeBoxSouth) || 
+					collision(Main.characterBox, Main.birdFriendBox) || 
+					collision(Main.characterBox, Main.grapesBox);
 			
-			//System.out.println("Tree North: "+ Main.treeBoxNorth.gety2());
+			
+			//Allows player to move back South if hits grapes
+			if(collision(Main.characterBox, Main.grapesBox) && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() > 350) {
+				stopS = false;
+			}	
 			
 			//Allows player to move back down if hit boundary
 			if(Main.characterBox.gety1() < Main.treeBoxNorth.gety2()) {
@@ -94,13 +106,22 @@ public class KeyProcessor{
 
 			break;
 		
-		case 'd':		
+		case 'd':	
+			
+			
 			//IMPORTANT: FIND METHOD TO SOLVE WHEN BIRD WALKS RIGHT BUG
 						//something to do with adjustX before nextspriteindexright is incremented
 			
 			boolean stopD;
-			stopD = collision(Main.characterBox, Main.treeBoxEast) || collision(Main.characterBox, Main.birdFriendBox);
+			stopD = collision(Main.characterBox, Main.treeBoxEast) || 
+					collision(Main.characterBox, Main.birdFriendBox) || 
+					collision(Main.characterBox, Main.grapesBox);
 			
+			
+			//Allows player to move back East if hits grapes
+			if(collision(Main.characterBox, Main.grapesBox) && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX() > 540) {
+				stopD = false;
+			}
 			
 			//Allows player to move back East if hit boundary
 			if(Main.characterBox.getx2() < Main.treeBoxWest.getx1()) {
@@ -131,15 +152,22 @@ public class KeyProcessor{
 			
 			break;
 			
-		case 'a':
-			boolean stopA;
-			stopA = collision(Main.characterBox, Main.treeBoxWest);
 			
-			//Allows player to move back West if hit boundary
-			if(Main.characterBox.getx1() > Main.treeBoxEast.getx2()) {
+		case 'a':
+
+			boolean stopA;
+			//stopA = collision(Main.characterBox, Main.treeBoxWest);
+			stopA = collision(Main.characterBox, Main.treeBoxWest) || collision(Main.characterBox, Main.grapesBox);
+			
+			if(collision(Main.characterBox, Main.grapesBox) && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX() < 500) {
 				stopA = false;
 			}
 			
+			//Allows player to move back West if hit border or facing left
+			if(Main.characterBox.getx1() > Main.treeBoxEast.getx2()) {
+				stopA = false;
+			}
+						
 			Main.nextSpriteIndexRight = 0; //Resets left side sprite so that if 'd' is pressed, starts at frame 0
 			
 			if(Main.nextSpriteIndexLeft > 3) {
@@ -157,7 +185,7 @@ public class KeyProcessor{
 				
 			Main.spriteDisplayed.get(Main.currentSprite).setTag("birdwalkL" + Integer.toString(Main.currentSprite + Main.nextSpriteIndexLeft)); 
 			Main.nextSpriteIndexLeft++;
-			
+						
 			break;
 		}
 	}

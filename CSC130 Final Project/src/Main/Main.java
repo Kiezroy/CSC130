@@ -30,7 +30,6 @@ public class Main{
 	public static int nextSpriteIndexBack = 0;
 	public static int nextSpriteIndexFront = 0;
 
-	//public static ArrayList<spriteInfo> collisionObjects = new ArrayList<>();	//Fulfills collection of collision objects
 	public static ArrayList<boundingBox> collisionObjects = new ArrayList<>();
 	
 	//Object and background sprites
@@ -84,7 +83,7 @@ public class Main{
 		
 		
 		//Make the character a bounding box with box coordinates
-		characterBox = new boundingBox(spriteDisplayed.get(0), 295,400,420,515); //Initial character position
+		characterBox = new boundingBox(spriteDisplayed.get(0), 295,400,420,500); //Initial character position
 		
 		//Create the trees as bounding boxes													   
 		treeBoxNorth = new boundingBox(treesHorizontalTop, 50,1250,60,200); //x1 = left of sprite, x2 = right of sprite, y1 = top, etc...
@@ -92,8 +91,8 @@ public class Main{
 		treeBoxEast = new boundingBox(treesVerticalRight, 1115,1275,190,530);
 		treeBoxWest = new boundingBox(treesVerticalLeft, 20,185,190,530);
 		
-		grapesBox = new boundingBox(grapes, 500,560,350,400);
-		birdFriendBox = new boundingBox(birdFriend, 1000, 1100,465,550);
+		grapesBox = new boundingBox(grapes, 500,540,330,410);
+		birdFriendBox = new boundingBox(birdFriend, 1000, 1100,430,550);
 		
 		collisionObjects.add(treeBoxNorth);
 		collisionObjects.add(treeBoxSouth);
