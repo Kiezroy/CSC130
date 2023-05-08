@@ -187,6 +187,45 @@ public class KeyProcessor{
 			Main.nextSpriteIndexLeft++;
 						
 			break;
+			
+		case '$':			//Spacebar
+			
+			System.out.println("X: " + Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX());
+			System.out.println("Y: " + Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() + "\n");
+			
+			/*
+			if(Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX() >= 440 
+					&& Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX() <= 510
+					&& Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() >= 340
+					&& Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() <= 420) {
+				Main.grapesText = true;
+			}
+			*/
+			
+			if (collision(Main.characterBox, Main.grapesBox)) {
+				//System.out.println("Collision!");
+				Main.foundGrapes = true;
+				/*
+				if(Main.foundGrapes && Main.askBird) {
+					Main.grapesText = true;
+				}
+				*/
+	            Main.textTimer.resetWatch();
+		    }else {
+		    	//System.out.println("No collision!");
+		    }
+			
+			if (collision(Main.characterBox, Main.birdFriendBox) && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() >= 400 && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() < 470 && Main.spriteDisplayed.get(Main.currentSprite).getTag().contains("birdwalkR")
+					|| collision(Main.characterBox, Main.birdFriendBox) && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX() >= 940  && Main.spriteDisplayed.get(Main.currentSprite).getTag().contains("front")) {
+				//System.out.println("Collision!");
+				Main.askBird = true;
+				Main.birdFriendText = true;
+	            Main.textTimer.resetWatch();
+		    }else {
+		    	//System.out.println("No collision!");
+		    }
+			
+			break;
 		}
 	}
 	
