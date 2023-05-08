@@ -8,8 +8,6 @@ public class boundingBox {
 	private int y1;
 	private int x2;
 	private int y2;
-    //private int height;
-    //private int width;
     
     public boundingBox(spriteInfo spriteData, int x1, int x2, int y1, int y2) {
     	this.spriteData = spriteData;

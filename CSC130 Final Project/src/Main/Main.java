@@ -31,9 +31,7 @@ public class Main{
 	public static int nextSpriteIndexFront = 0;
 	
 	//Activates text if player hits spacebar near the items
-	//public static boolean grapesText = false;
 	public static boolean birdFriendText = false;
-	//public static boolean displayGrapesText = false;
 	public static boolean foundGrapes = false;	//Tracks if grapes have been found by the player
 	public static boolean askBird = false;	//Tracks if player talked to birdFriend yet
 
@@ -144,76 +142,31 @@ public class Main{
 		
 		ctrl.addSpriteToFrontBuffer(xCoord, yCoord, tag);
 		
-		//When timer is up, next line in script.txt is displayed from the hashmap
-		/*
-		if(textTimer.isTimeUp()) {
-			textIndex++;
-			if(textIndex > 5) {
-				textIndex = 1;
-			}
-			textTimer.resetWatch();
-		}
-		*/
-		
-		
-		
+
 		if (askBird == false && foundGrapes) {		//If the player has not talked to the bird and interacts with the grapes
 		    if (textTimer.isTimeUp()) {
-		        //grapesText = false;
 		        foundGrapes = false;
 		    } else {
-		        ctrl.drawString(300, 300, "Hmm what is this? Perhaps I should talk to the bird...", c);       
+		    	ctrl.drawString(300, 300, map.get("string" + Integer.toString(textIndex)), c);   
 		    }
 		}else if(askBird && foundGrapes) {	//If the player already talked to the bird and interacts with the grapes
 			if (textTimer.isTimeUp()) {
-		        //grapesText = false;
 		        foundGrapes = false;
 		    } else {
-		        ctrl.drawString(300, 300, "Found it!", c);
+		    	ctrl.drawString(300, 300, map.get("string" + Integer.toString(2)), c);  
 		    }
 		}
 
-		if (birdFriendText) {
+		
+		if (birdFriendText) {		//If player talks to the bird
 		    if (textTimer.isTimeUp()) {
 		        birdFriendText = false;
 		    } else {
-		        ctrl.drawString(300, 300, "Have you seen my grapes? I seem to have misplaced them...", c);
+		        ctrl.drawString(300, 300, map.get("string" + Integer.toString(3)), c); 
 		    }
 		}
 		
-		
-		/*
-		if(grapesText) {
-			if(textTimer.isTimeUp()) {
-				ctrl.drawString(100, 250, map.get("string" + Integer.toString(textIndex)), c);
-				//ctrl.drawString(100, 250, map.get("string" + Integer.toString(textIndex)), c);
-				textIndex = 0;
-				textTimer.resetWatch();
-			}
-			ctrl.drawString(100, 250, map.get("string" + Integer.toString(textIndex)), c);
-		}
-		if(birdFriendText) {
-			ctrl.drawString(100, 250, map.get("string" + Integer.toString(textIndex)+1), c);
-		}
-		*/
-		
-		/*
-		if (grapesText && !displayGrapesText) {
-		    displayGrapesText = true;
-		    textTimer.resetWatch();
-		}
 
-		if (displayGrapesText) {
-		    if (textTimer.isTimeUp()) {
-		        displayGrapesText = false;
-		    } else {
-		        ctrl.drawString(100, 250, map.get("string" + Integer.toString(textIndex)), c);
-		    }
-		}
-		*/
-		
-		
-		//ctrl.drawString(100, 250, map.get("string" + Integer.toString(textIndex)), c); //Displays text to the screen
 	}
 	
 	// Additional Static methods below...(if needed)
