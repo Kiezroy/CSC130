@@ -1,3 +1,4 @@
 string1*Bluey: 'Hmm what is this? Perhaps I should talk to the bird...'
-string2*Bluey: 'Found it!'
+string2*Bluey: 'Found it! Let's go notify the bird!'
 string3*Bluey: 'Have you seen my grapes? I seem to have misplaced them...'
+string4*Bluey: 'It's a miracle you found them, thank you!'

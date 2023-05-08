@@ -38,7 +38,8 @@ public class KeyProcessor{
 
 			//If a collision is true, make the character stop being able to move that direction
 			//stopW = collision(Main.characterBox, Main.treeBoxNorth);
-			stopW = collision(Main.characterBox, Main.treeBoxNorth) || collision(Main.characterBox, Main.grapesBox);
+			stopW = collision(Main.characterBox, Main.treeBoxNorth) || 
+					collision(Main.characterBox, Main.grapesBox);
 			
 			//Allows player to move back North if hits grapes
 			if(collision(Main.characterBox, Main.grapesBox) && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() < 330) {
@@ -156,7 +157,8 @@ public class KeyProcessor{
 		case 'a':
 
 			boolean stopA;
-			stopA = collision(Main.characterBox, Main.treeBoxWest) || collision(Main.characterBox, Main.grapesBox);
+			stopA = collision(Main.characterBox, Main.treeBoxWest) || 
+					collision(Main.characterBox, Main.grapesBox);
 			
 			if(collision(Main.characterBox, Main.grapesBox) && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX() < 500) {
 				stopA = false;
@@ -192,13 +194,15 @@ public class KeyProcessor{
 			System.out.println("X: " + Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX());
 			System.out.println("Y: " + Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() + "\n");
 			
-			
+			//There is a collision with the character and grapes, and the user presses spacebar
 			if (collision(Main.characterBox, Main.grapesBox)) {
-				//System.out.println("Collision!");
 				Main.foundGrapes = true;
 	            Main.textTimer.resetWatch();
 		    }
 			
+			
+			//There is a collision with the character and birdFriend, and the user presses spacebar
+			//Checks if character is in range and is facing birdFriend
 			if (collision(Main.characterBox, Main.birdFriendBox) && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() >= 400 && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() < 470 && Main.spriteDisplayed.get(Main.currentSprite).getTag().contains("birdwalkR")
 					|| collision(Main.characterBox, Main.birdFriendBox) && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX() >= 940  && Main.spriteDisplayed.get(Main.currentSprite).getTag().contains("front")) {
 				Main.askBird = true;

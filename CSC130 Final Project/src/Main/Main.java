@@ -34,6 +34,7 @@ public class Main{
 	public static boolean birdFriendText = false;
 	public static boolean foundGrapes = false;	//Tracks if grapes have been found by the player
 	public static boolean askBird = false;	//Tracks if player talked to birdFriend yet
+	public static boolean finished = false;	//Tracks if player has finished their task
 
 	public static ArrayList<boundingBox> collisionObjects = new ArrayList<>();
 	
@@ -152,6 +153,7 @@ public class Main{
 		}else if(askBird && foundGrapes) {	//If the player already talked to the bird and interacts with the grapes
 			if (textTimer.isTimeUp()) {
 		        foundGrapes = false;
+		        finished = true;
 		    } else {
 		    	ctrl.drawString(300, 300, map.get("string" + Integer.toString(2)), c);  
 		    }
@@ -161,7 +163,10 @@ public class Main{
 		if (birdFriendText) {		//If player talks to the bird
 		    if (textTimer.isTimeUp()) {
 		        birdFriendText = false;
-		    } else {
+		    }else if(finished) {
+		        ctrl.drawString(300, 300, map.get("string" + Integer.toString(4)), c); 
+		    } 
+		    else {
 		        ctrl.drawString(300, 300, map.get("string" + Integer.toString(3)), c); 
 		    }
 		}
