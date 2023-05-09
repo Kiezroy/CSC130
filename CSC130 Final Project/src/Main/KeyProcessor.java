@@ -195,14 +195,30 @@ public class KeyProcessor{
 			System.out.println("Y: " + Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() + "\n");
 			
 			//There is a collision with the character and grapes, and the user presses spacebar
-			if (collision(Main.characterBox, Main.grapesBox)) {
+			//Checks if character is in range and is facing grapes
+			
+			boolean inYRange = Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() >= 260 
+								&& Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() <= 330;
+			boolean inXRange = Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX() >= 440 
+								&& Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX() <= 510;
+			
+			boolean facingRight = Main.spriteDisplayed.get(Main.currentSprite).getTag().contains("birdwalkR");
+			boolean facingLeft = Main.spriteDisplayed.get(Main.currentSprite).getTag().contains("birdwalkL");
+			boolean facingFront = Main.spriteDisplayed.get(Main.currentSprite).getTag().contains("front");
+			boolean facingBack = Main.spriteDisplayed.get(Main.currentSprite).getTag().contains("back");
+			
+			if (collision(Main.characterBox, Main.grapesBox)
+					&& ((inYRange && facingRight && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX() <= 405)	//Check if character is in range, and is facing the grapes on the correct side
+					|| (inYRange && facingLeft && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX() >= 545)
+					|| (inXRange && facingFront && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() <= 365)
+					|| (inXRange && facingBack && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() >= 260))) {
 				Main.foundGrapes = true;
 	            Main.textTimer.resetWatch();
 		    }
 			
 			
 			//There is a collision with the character and birdFriend, and the user presses spacebar
-			//Checks if character is in range and is facing birdFriend
+			//Checks if character is in range (with coordinates) and is facing birdFriend (checks current sprite)
 			if (collision(Main.characterBox, Main.birdFriendBox) && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() >= 400 && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() < 470 && Main.spriteDisplayed.get(Main.currentSprite).getTag().contains("birdwalkR")
 					|| collision(Main.characterBox, Main.birdFriendBox) && Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX() >= 940  && Main.spriteDisplayed.get(Main.currentSprite).getTag().contains("front")) {
 				Main.askBird = true;
