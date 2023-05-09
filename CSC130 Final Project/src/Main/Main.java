@@ -36,7 +36,7 @@ public class Main{
 	public static boolean askBird = false;	//Tracks if player talked to birdFriend yet
 	public static boolean finished = false;	//Tracks if player has finished their task
 
-	public static ArrayList<boundingBox> collisionObjects = new ArrayList<>();
+	public static ArrayList<boundingBox> collisionObjects = new ArrayList<>();	//Fulfills container that holds a collection of bounding boxes neatly requirement
 	
 	//Object and background sprites
 	public static spriteInfo grass;
