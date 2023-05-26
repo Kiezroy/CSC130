@@ -110,9 +110,6 @@ public class KeyProcessor{
 		case 'd':	
 			
 			
-			//IMPORTANT: FIND METHOD TO SOLVE WHEN BIRD WALKS RIGHT BUG
-						//something to do with adjustX before nextspriteindexright is incremented
-			
 			boolean stopD;
 			stopD = collision(Main.characterBox, Main.treeBoxEast) || 
 					collision(Main.characterBox, Main.birdFriendBox) || 
@@ -191,8 +188,8 @@ public class KeyProcessor{
 			
 		case '$':			//Spacebar
 			
-			System.out.println("X: " + Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX());
-			System.out.println("Y: " + Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() + "\n");
+			//System.out.println("X: " + Main.spriteDisplayed.get(Main.currentSprite).getCoords().getX());			//Test position of bird
+			//System.out.println("Y: " + Main.spriteDisplayed.get(Main.currentSprite).getCoords().getY() + "\n");
 			
 			//There is a collision with the character and grapes, and the user presses spacebar
 			//Checks if character is in range and is facing grapes
