@@ -57,3 +57,7 @@ Have a container that holds a collection of bounding boxes neatly
 Zip up a copy of your entire project from and submit via Canvas by the due date. Only .zip files will be accepted!
 
 If you have any questions, let me know.
+
+#                                                                           Preview
+![GIFMaker_me](https://github.com/Kiezroy/CSC130/assets/67439231/75c01c39-edb3-4208-b615-d981d27ca5f9)
+
